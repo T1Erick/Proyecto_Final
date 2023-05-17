@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CreateProductModelDto, ProductModel, UpdateProductModelDto } from 'src/app/entities/product.model';
 import { ProductHttpService } from 'src/app/services/products.service';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './products.component.html',
@@ -10,7 +11,7 @@ import { ProductHttpService } from 'src/app/services/products.service';
 export class ProductsComponent implements OnInit {
 
   products: ProductModel[] = [];
-  selectedProduct: UpdateProductModelDto={}
+  selectedProduct: UpdateProductModelDto = {id: 0,title:'', price:0, description:''};
 
   constructor(private productHttpService: ProductHttpService) {}
 
@@ -38,8 +39,8 @@ export class ProductsComponent implements OnInit {
     response=>{
       console.log(response)})
  }
- editProduct(){
-  this.selectedProduct = {title:'', price:0, description:''}
+ editProduct(product:ProductModel){
+  this.selectedProduct = product
  }
  updateProduct(id: ProductModel['id'], product: UpdateProductModelDto){
   this.productHttpService.update(id,product).subscribe(

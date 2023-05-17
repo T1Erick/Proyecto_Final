@@ -11,11 +11,12 @@ export interface ProductModel{
 //Omit: Omite algunos campos
 export interface CreateProductModelDto extends Omit<ProductModel,'id' | 'category'>{
   categoryId:number;
-  
+
 }
 //Partial: toma algunos campos para cambiarlos
-// ? opcional 
+// ? opcional
 export interface UpdateProductModelDto extends Partial<ProductModel> {
+  id: number;
   categoryId?:number;
-  
+
 }
